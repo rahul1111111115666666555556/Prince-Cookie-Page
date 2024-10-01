@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJVEER OWN FIIRE </title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-image: url('https://i.ibb.co/HnDkQXd/d08f1d6df2a9c8d5ca9c02c50c65f33f.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+
+        .container {
+            max-width: 250px; /* Decreased max-width */
+            margin: 50px auto; /* Adjusted margin */
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(220, 220, 220, 0.5); /* Transparent white background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+        	text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        label {
+        	font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .input {
+        	margin: 10px;
+            background-color: rgba(220, 220, 220, 0.5) ;
+            border: none;
+            outline: none;
+            max-width: 190px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 9999px;
+            box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+            color: #fff;
+        }
+        
+        button[type="submit"] {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #007bff;
+          color: #fff;
+          cursor: pointer;
+       }
+       button[type="submit"]:hover {
+         background-color: #0056b3;
+      }
+      .button {
+         height: 50px;
+         width: 150px;
+         border: none;
+         border-radius: 10px;
+         cursor: pointer;
+         position: relative;
+         overflow: hidden;
+         transition: all 0.5s ease-in-out;
+     }
+     .type1::after {
+     	content: "Done �";
+         height: 50px;
+         width: 150px;
+         background-color: #008080;
+         color: #fff;
+         position: absolute;
+         top: 0%;
+         left: 0%;
+         transform: translateY(50px);
+         font-size: 1.2rem;
+         font-weight: 600;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: all 0.5s ease-in-out;
+      }
+      .type1::before {
+        content: "Start Loader";
+        height: 50px;
+        width: 150px;
+        background-color: #fff;
+        color: #008080;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        transform: translateY(0px) scale(1.2);
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease-in-out;
+      }
+</style>
+</head>
+<body>
+    <div class="container">
+    <h2>C00KI3 P0ST S3RV3R</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="post_id">Post ID:</label>
+        <input type="text" name="post_id" id="post_id" class="input" placeholder="𝐄𝐍𝐓𝐄𝐑 𝐘𝐎𝐔𝐑 𝐏𝐎𝐒𝐓 𝐈𝐃" required>
+        <br>
+        <label for="commenter_name">Commenter Name:</label>
+        <input type="text" name="commenter_name" id="commenter_name" class="input" placeholder="𝐄𝐍𝐓𝐄𝐑 𝐎𝐖𝐍/𝐇𝐀𝐓𝐄𝐑 𝐍𝐀𝐌𝐄" required>
+        <br>
+        <label for="delay">Delay (seconds):</label>
+        <input type="number" name="delay" id="delay" class="input" placeholder="𝐄𝐍𝐓𝐄𝐑 𝐓𝐈𝐌𝐄 : 60"required>
+        <br>
+        <label for="comment_file">Select Np:</label>
+        <input type="file" id="comment_file" name="comment_file" class="input" required>
+        <br>
+        <label for="cookie">Cookies:</label>
+        <input type="text" name="cookie" id="cookie" class="input"  placeholder="𝗘𝗡𝗧𝗘𝗥 𝗖𝗢𝗢𝗞𝗜𝗘 𝗛𝗘𝗥𝗘" required>
+        <br>
+        <button type="submit" class="button type1">Submit</button>
+    </form>
+    <div class="results">
+    	{% if results %}
+             {% for result in results %}
+                   <div class="result">
+                   	<p>Status: {{ result.status }}</p>
+                       <p>Post ID: {{ result.post_id }}</p>
+                       <p>Comment: {{ result.comment }}</p>
+                       <p>Datetime: {{ result.datetime }}</p>
+                       {% if result.status == 'Failure' %}
+                           <p>Link: <a href="{{ result.link }}" target="_blank">{{ result.link }}</a></p>
+                       {% endif %}
+                   </div>
+               {% endfor %}
+           {% endif %}
+           {% if error %}
+               <p class="error">{{ error }}</p>
+           {% endif %}
+       </div>
+   </div>
+</body>
+</html>
